@@ -1,0 +1,18 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+  zipkin:
+
+exporters:
+  otlp:
+    endpoint: otel-collector2:4317
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: []
+      exporters: [otlp]

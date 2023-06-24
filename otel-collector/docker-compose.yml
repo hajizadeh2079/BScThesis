@@ -1,0 +1,16 @@
+services:
+  otel-collector1:
+    image: docker.artifactory.tapsi.tech/otel/opentelemetry-collector-contrib:0.79.0
+    command: [--config=/etc/otel-collector-config.yaml]
+    volumes:
+      - ./otel-collector1-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+    - 4318:4318
+    - 9411:9411
+  otel-collector2:
+    image: docker.artifactory.tapsi.tech/otel/opentelemetry-collector-contrib:0.79.0
+    command: [--config=/etc/otel-collector-config.yaml]
+    volumes:
+      - ./otel-collector2-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+    - 4317:4317

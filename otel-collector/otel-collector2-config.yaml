@@ -1,0 +1,24 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+
+processors:
+  probabilistic_sampler:
+    hash_seed: 22
+    sampling_percentage: 10
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 25
+    spike_limit_mib: 1
+
+exporters:
+  otlphttp:
+    endpoint: http://192.168.43.243:8000
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: []
+      exporters: [otlphttp]
